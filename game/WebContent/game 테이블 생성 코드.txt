@@ -1,0 +1,9 @@
+create table game(
+no number primary key,
+id varchar2(30) not null unique,
+job varchar2(30) not null,
+chLevel number check(chLevel>=0),
+exp number check(exp>=0)
+);
+
+create sequence game_seq;
