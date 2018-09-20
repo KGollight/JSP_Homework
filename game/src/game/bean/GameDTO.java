@@ -1,11 +1,31 @@
 package game.bean;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
+
 public class GameDTO {
 	private int no;
 	private String id;
 	private String job;
 	private int chLevel;
 	private int exp;
+	
+	public GameDTO(HttpServletRequest request) {
+		try {setNo(Integer.parseInt(request.getParameter("no")));}catch(Exception e) {}
+		setId(request.getParameter("id"));
+		setJob(request.getParameter("job"));
+		try {setChLevel(Integer.parseInt(request.getParameter("chLevel")));}catch(Exception e) {}
+		try {setExp(Integer.parseInt(request.getParameter("exp")));}catch(Exception e) {}
+	}
+	public GameDTO(ResultSet rs) throws SQLException{
+		setNo(rs.getInt("no"));
+		setId(rs.getString("id"));
+		setJob(rs.getString("job"));
+		setChLevel(rs.getInt("chLevel"));
+		setExp(rs.getInt("exp"));
+	}
 	
 	@Override
 	public String toString() {
